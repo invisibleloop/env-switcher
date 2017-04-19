@@ -1,2 +1,2 @@
-# env-switcher
+# Environment Switcher Chrome Extension
 Chrome Extension
