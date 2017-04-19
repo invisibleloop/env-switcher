@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Environment Switcher</title>
+    <link href="popup.css" rel="stylesheet">
+  </head>
+  <body>
+
+    <div class="popup">
+
+      <span class="logo">Environment Switcher</span>
+
+      <span class="open-label" style="display:none"><span>open in</span></span>
+
+      <div class="environments"></div>
+
+      <form class="form" autocomplete="off">
+        <p class="form__title"><b>Add new environment</b></p>
+        <div class="form__group">
+          <div class="form__group-nested form__group-nested--first">
+            <label for="label" class="form__label">Label:</label>
+            <input type="text" autofocus tabindex="1" class="form__input" value="" id="label" />
+          </div>
+          <div class="form__group-nested form__group-nested--last">
+            <label for="url" class="form__label">URL:</label>
+            <input type="text" tabindex="2" class="form__input" value="" id="url" />
+          </div>
+        </div>
+        <div class="form__group form__group--btn">
+          <button class="form__btn btn btn--form js-form-btn">add</button>
+        </div>
+        <div class="form__group form__group--colour">
+          <label class="form__label">Label colour:</label>
+          <input type="radio" id="colour--black" name="colour" checked="checked"/>
+          <label for="colour--black"><span class="black js-color-touch"></span></label>
+          <input type="radio" id="colour--blue" name="colour" />
+          <label for="colour--blue"><span class="blue js-color-touch"></span></label>
+          <input type="radio" id="colour--red" name="colour" />
+          <label for="colour--red"><span class="red js-color-touch"></span></label>
+          <input type="radio" id="colour--orange" name="colour" />
+          <label for="colour--orange"><span class="orange js-color-touch"></span></label>
+          <input type="radio" id="colour--concrete" name="colour" />
+          <label for="colour--concrete"><span class="concrete js-color-touch"></span></label>
+          <input type="radio" id="colour--green" name="colour" />
+          <label for="colour--green"><span class="green js-color-touch"></span></label>
+          <input type="radio" id="colour--yellow" name="colour" />
+          <label for="colour--yellow"><span class="yellow js-color-touch"></span></label>
+        </div>
+      </form>
+
+    </div>
+
+    <script src="popup.js"></script>
+  </body>
+</html>
