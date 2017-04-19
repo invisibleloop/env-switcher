@@ -1,2 +1,2 @@
 # Environment Switcher Chrome Extension
-Chrome Extension
+A chrome extension to switch environments and keeping the url structure intact.
