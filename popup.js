@@ -337,4 +337,7 @@ document.addEventListener('DOMContentLoaded', () => {
   chrome.storage.onChanged.addListener(changes => {
   });
   URLSwitcher.bindLabelColorEvents();
+  document.body.addEventListener('click',(e) => {
+    URLSwitcher.closeColorLists();
+  }, true);
 });
