@@ -19,9 +19,10 @@ body {
   left: 19px;
   font-size: 80%;
   color: #333333;
-  background: url(icon16.png) 0 0 no-repeat;
+  background: url(icon16.png) 0 2px no-repeat;
   background-size: 14px;
   padding: 0 0 0 17px;
+  font-weight: 600;
 }
 
 .environments {
@@ -53,8 +54,8 @@ body {
 }
 
 .switcher__label {
-  font-size: 14px;
-  font-weight:bold;
+  font-size: 12px;
+  font-weight:600;
   padding: 0 3px;
   position: relative;
   left: -4px;
@@ -80,7 +81,7 @@ body {
 }
 
 .switcher__url {
-  font-size: 14px;
+  font-size: 12px;
   color: #afafaf;
   padding: 0 3px;
   position: relative;
@@ -154,12 +155,6 @@ body {
 }
 
 .btn--delete {
-  /*background: #c0392b;*/
-  /*border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-  line-height: 19px;*/
   font-size: 100%;
   color: #c0392b;
   border:1px solid #c0392b;
@@ -171,7 +166,6 @@ body {
 
 .btn--form {
   padding: 2px 10px;
-  /*border:0;*/
   background:white;
 }
 
@@ -187,6 +181,7 @@ body {
   flex: 0 1 100%;
   margin: 0 0 8px;
   font-size: 80%;
+  font-weight: 600;
 }
 
 .form__group {
@@ -307,6 +302,7 @@ input[type="radio"]:checked + label span {
   right: 113px;
   position: absolute;
   top: 8px;
+  font-weight: 400;
 }
 
 .open-label::before {
