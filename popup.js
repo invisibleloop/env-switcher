@@ -14,6 +14,38 @@ URLSwitcher.supportedProtocols = [
   URLSwitcher.SFTP_PROTOCOL,
 ];
 
+URLSwitcher.ColourList = [
+  {
+    name: 'black',
+    hex: '#000000',
+  },
+  {
+    name: 'blue',
+    hex: '#3498db',
+  },
+  {
+    name: 'red',
+    hex: '#c0392b',
+  },
+  {
+    name: 'orange',
+    hex: '#e67e22',
+  },
+  {
+    name: 'concrete',
+    hex: '#95a5a6',
+  },
+  {
+    name: 'green',
+    hex: '#27ae60',
+  },
+  {
+    name: 'yellow',
+    hex: '#f1c40f',
+  }
+];
+
+
 URLSwitcher.DEFAULT_PROTOCOL = URLSwitcher.HTTP_PROTOCOL;
 URLSwitcher.DEFAULT_LABEL_COLOR = '#000000';
 URLSwitcher.prototype = Object.create(Object.prototype);
@@ -66,10 +98,11 @@ URLSwitcher.bindLabelColorEvents = () => {
 
 URLSwitcher.updateSwitcherItem = (id, itemElement) => {
   chrome.storage.sync.get('data', data => {
-    data.data.forEach(item => {
+    data.data.forEach(item => {;
       if (item.id === id) {
         item.label = itemElement.querySelector('.js-switcher-label').innerText;
         item.url = itemElement.querySelector('.js-switcher-url').innerText;
+        item.labelColor = itemElement.querySelector('.js-switcher-tab').style.backgroundColor;
         let links = itemElement.querySelectorAll('.js-link');
         links.forEach(element => element.dataset.url = item.url);
       }
@@ -83,6 +116,9 @@ URLSwitcher.attachEvents = () => {
   let switcherItems = document.querySelectorAll('.js-switcher-item');
   switcherItems.forEach(switcherItem => {
     let id = switcherItem.id;
+
+    let itemColourTab = switcherItem.querySelector('.js-switcher-tab');
+    itemColourTab.addEventListener('click', () => URLSwitcher.displayColours(id, switcherItem));
 
     let itemLabel = switcherItem.querySelector('.js-switcher-label');
     itemLabel.addEventListener('input', () => URLSwitcher.updateSwitcherItem(id, switcherItem));
@@ -166,11 +202,28 @@ URLSwitcher.buildUI = collection => {
 
       let tabGroup = tabs.join('');
 
-      list.push(`<div class="switcher js-switcher-item ${ tabClass }" id="${ item.id }">`);
+      list.push(`<div class="switcher js-switcher-item ${ tabClass }" id="${ item.id }" data-color="${ item.labelColor }">`);
       if (activeCount > 0) {
         list.push(`<div class="tabs">${ tabGroup }</div>`);
       }
-      list.push(`<div class="switcher__item switcher__item--label"><span class="switcher__tab" style="background-color: ${ item.labelColor };"></span> <span class="switcher__label js-switcher-label" contenteditable>${ item.label }</span><br><span class="switcher__url js-switcher-url" contenteditable>${ item.url }</span></div>`);
+
+      let colorsMarkup = [
+        `<span class="color__list js-color-list">`,
+        URLSwitcher.ColourList.map((color) => {
+          return `<span class="color__item js-color-item ${ color.name }" data-color="${ color.hex }" style="background-color: ${ color.hex };" data-id="${ item.id }"></span>`;
+        }).join(''),
+        `</span>`
+      ].join('');
+
+      list.push(
+        `<div class="switcher__item switcher__item--label">
+            ${ colorsMarkup }
+            <span class="switcher__tab js-switcher-tab" style="background-color: ${ item.labelColor };" data-id="${ item.id }">
+            </span>
+            <span class="switcher__label js-switcher-label" contenteditable>${ item.label }</span><br />
+            <span class="switcher__url js-switcher-url" contenteditable>${ item.url }</span>
+        </div>`
+      );
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="active">active tab</a></div>`);
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="new">new tab</a></div>`);
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn btn--delete js-delete" href="#" data-id="${ item.id }" data-tab="new">&times;</a></div>`);
@@ -179,6 +232,14 @@ URLSwitcher.buildUI = collection => {
     });
 
     elem.innerHTML = list.join('');
+    let colorNodes = elem.querySelectorAll('.js-color-item');
+    colorNodes.forEach(node => {
+      node.addEventListener('click', () => {
+        URLSwitcher.chooseColor(node);
+        URLSwitcher.closeColorLists();
+      });
+    });
+
     URLSwitcher.attachEvents();
 
   } else {
@@ -221,6 +282,27 @@ URLSwitcher.deleteItem = (uuid) => {
         URLSwitcher.buildUI(filteredData);
       });
     });
+};
+
+URLSwitcher.closeColorLists = () => {
+  const lists = document.querySelectorAll('.js-color-list');
+  lists.forEach( node => {
+    node.classList.remove('color__list--show');
+  });
+};
+
+URLSwitcher.displayColours = (id, item) => {
+  URLSwitcher.closeColorLists();
+  let node = item.querySelector('.js-color-list');
+  node.classList.add('color__list--show');
+};
+
+URLSwitcher.chooseColor = (colorNode) => {
+  let itemNode = document.getElementById(colorNode.dataset.id);
+  itemNode.dataset.color = colorNode.dataset.color;
+  let tabColor = itemNode.querySelector('.js-switcher-tab');
+  tabColor.style.backgroundColor = colorNode.dataset.color;
+  URLSwitcher.updateSwitcherItem(itemNode.id, itemNode);
 };
 
 document.addEventListener('DOMContentLoaded', () => {
