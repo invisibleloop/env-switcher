@@ -246,9 +246,9 @@ input[type="radio"]:checked + label span {
 .open-label {
   text-align: right;
   font-size: 80%;
-  right: 109px;
+  right: 116px;
   position: absolute;
-  top: 7px;
+  top: 18px;
 }
 
 .open-label::before {
