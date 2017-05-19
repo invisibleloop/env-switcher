@@ -1,5 +1,5 @@
 * {
-  box-sizing:border-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -70,6 +70,11 @@ body {
   height:100%;
   width:8px;
   border-radius:3px 0 0 3px;
+  cursor: pointer;
+  transition: all .2s;
+}
+.switcher__tab:hover {
+  width: 12px;
 }
 
 .switcher__item--btn {
@@ -369,3 +374,45 @@ input[type="radio"]:checked + label span {
   top: -3px;
   width: 27px;
 }
+
+/**
+color picker update /
+ */
+.switcher {
+  box-shadow: 0 1px rgba(0,0,0,.1);
+}
+
+
+.color__list {
+  width: 100%;
+  height: 0;
+  position: relative;
+  z-index: 9;
+  background: rgba(255, 255, 255, .7);
+  overflow: hidden;
+  transition: all 0.2s;
+  display: block;
+}
+
+.color__list--show {
+  height: 30px;
+}
+
+.color__item {
+  width: 14px;
+  height: 14px;
+  position: relative;
+  display: inline-block;
+  margin: 5px;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+
+.color__item:hover{
+  transform: scale(1.6);
+  cursor: pointer;
+}
+
+/**
+/ color picked update
+ */
