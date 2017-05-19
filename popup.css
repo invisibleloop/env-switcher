@@ -31,7 +31,7 @@ body {
 
 .switcher {
   display: flex;
-  padding: 8px 8px 8px 16px;
+  padding: 5px 8px 8px 16px;
   justify-content: space-between;
   border-radius: 3px;
   margin-bottom: 10px;
@@ -148,7 +148,7 @@ body {
   text-align: center;
   display: inline-block;
   box-sizing: border-box;
-  font-size: 80%;
+  font-size: 12px;
   line-height: 0;
   border:1px solid #0dbed0;
 }
