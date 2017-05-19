@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "URL Switcher",
+  "name": "Environment Switcher",
   "description": "This extension switches between local, uat, live and origin urls",
   "version": "2.0",
   "icons": { "16": "icon16.png",
