@@ -19,8 +19,8 @@ body {
   left: 19px;
   font-size: 80%;
   color: #333333;
-  background: url(icon16.png) 0 2px no-repeat;
-  background-size: 14px;
+  background: url(icon16.png) 0 1px no-repeat;
+  background-size: 16px;
   padding: 0 0 0 17px;
   font-weight: 600;
 }
