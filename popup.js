@@ -152,11 +152,12 @@ URLSwitcher.buildUI = collection => {
 
       URLSwitcher.tabs.forEach((tab, tabIndex) => {
         let tabUrl = tab.url + '';
+        tabUrl = tabUrl.replace(/(^\w+:|^)\/\//, '');
         let url = item.url;
-        let active = (tabUrl.includes(url)) ? ' tabs_item--active' : '';
+        let active = (tabUrl.startsWith(url)) ? ' tabs_item--active' : '';
         let indexTab = `data-index="${ tabIndex }"`;
-        let tabText = (tabUrl.includes(url)) ? '&bull;' : '&nbsp;';
-        if (tabUrl.includes(url)) {
+        let tabText = (tabUrl.startsWith(url)) ? '&bull;' : '&nbsp;';
+        if (tabUrl.startsWith(url)) {
           activeCount++;
           tabClass = ' switcher--tabs';
         }
