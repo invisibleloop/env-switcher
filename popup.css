@@ -6,6 +6,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-size: 100%;
   background: #ececec;
+  color: #333333;
 }
 
 .popup {
@@ -52,8 +53,13 @@ body {
 }
 
 .switcher__label {
-  font-size: 80%;
+  font-size: 14px;
   font-weight:bold;
+  padding: 0 3px;
+  position: relative;
+  left: -4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
 }
 
 .switcher__tab {
@@ -74,8 +80,54 @@ body {
 }
 
 .switcher__url {
-  font-size: 80%;
+  font-size: 14px;
   color: #afafaf;
+  padding: 0 3px;
+  position: relative;
+  left: -4px;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.switcher__url:focus,
+.switcher__label:focus {
+  outline: none;
+  border: 1px solid #d8d8d8;
+}
+
+.switcher__url:focus:after,
+.switcher__label:focus:after {
+  content:'\f040';
+  position: absolute;
+  right:-16px;
+  top:0;
+  font-size: 12px;
+  color: #afafaf;
+  font-weight: normal;
+  font-family: FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: #0dbed0;
+}
+
+.switcher__url:hover,
+.switcher__label:hover {
+  border: 1px solid #d8d8d8;
+}
+
+.switcher__url:hover:after,
+.switcher__label:hover:after {
+  content:'\f040';
+  position: absolute;
+  right:-16px;
+  top:0;
+  font-size: 12px;
+  color: #afafaf;
+  font-weight: normal;
+  font-family: FontAwesome;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  color: #0dbed0;
 }
 
 .btn {
@@ -155,6 +207,11 @@ body {
   border-radius:3px;
   border:1px solid #cdcdcd;
   padding:5px;
+  font-size: 12px;
+}
+
+.form__input:focus {
+  outline: none;
 }
 
 .form__group--btn {
@@ -165,6 +222,7 @@ body {
 .form__label {
   padding-right:5px;
   font-size:80%;
+  color:#0dbed0;
 }
 
 .form__btn {

@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>Environment Switcher</title>
+    <link href="font-awesome.min.css" rel="stylesheet">
     <link href="popup.css" rel="stylesheet">
   </head>
   <body>
@@ -18,19 +19,19 @@
         <p class="form__title"><b>Add new environment</b></p>
         <div class="form__group">
           <div class="form__group-nested form__group-nested--first">
-            <label for="label" class="form__label">Label:</label>
-            <input type="text" autofocus tabindex="1" class="form__input" value="" id="label" />
+            <label for="label" class="form__label"><i class="fa fa-tag" aria-hidden="true"></i></label>
+            <input type="text" autofocus tabindex="1" class="form__input" value="" id="label" placeholder="label"/>
           </div>
           <div class="form__group-nested form__group-nested--last">
-            <label for="url" class="form__label">URL:</label>
-            <input type="text" tabindex="2" class="form__input" value="" id="url" />
+            <label for="url" class="form__label"><i class="fa fa-link" aria-hidden="true"></i></label>
+            <input type="text" tabindex="2" class="form__input" value="" id="url" placeholder="environment url" />
           </div>
         </div>
         <div class="form__group form__group--btn">
           <button class="form__btn btn btn--form js-form-btn">add</button>
         </div>
         <div class="form__group form__group--colour">
-          <label class="form__label">Label colour:</label>
+          <label class="form__label"><i class="fa fa-tint" aria-hidden="true"></i></label>
           <input type="radio" id="colour--black" name="colour" checked="checked"/>
           <label for="colour--black"><span class="black js-color-touch"></span></label>
           <input type="radio" id="colour--blue" name="colour" />
