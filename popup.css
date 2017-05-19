@@ -225,6 +225,10 @@ body {
   color:#0dbed0;
 }
 
+.form__label--colour {
+  padding-right: 9px;
+}
+
 .form__btn {
   width:100%;
 }
