@@ -104,12 +104,13 @@ URLSwitcher.checkServerStatus = (item) => {
   }
   return new Promise((resolve) => {
     const ping = new XMLHttpRequest();
+    ping.timeout = 5000;
     ping.onreadystatechange = function(){
       if(ping.readyState == 4){
           if(ping.status == 200){
-            resolve(true);
+            resolve({success: true});
           } else {
-            resolve(false);
+            resolve({success: false});
           }
       }
     }
@@ -267,7 +268,7 @@ URLSwitcher.buildUI = collection => {
     const serverNodes = document.querySelectorAll('.js-server');
     collection.forEach((item) => {
       const server = URLSwitcher.checkServerStatus(item).then((data) => {
-        const serverStatus = (data) ? 'fa-arrow-up' : 'fa-arrow-down' ;
+        const serverStatus = (data.success) ? 'fa-arrow-up' : 'fa-arrow-down' ;
         const elemServer = document.getElementById(`server-${item.id}`);
         elemServer.classList.remove('fa-spin');
         elemServer.classList.remove('fa-spinner');
