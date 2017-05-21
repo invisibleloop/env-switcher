@@ -99,15 +99,15 @@ URLSwitcher.bindLabelColorEvents = () => {
 URLSwitcher.checkServerStatus = (item) => {
   const env = item;
   let url = env.url;
-  if (!url.startsWith('http://')) {
+  if (!url.match(/^[a-zA-Z]+:\/\//)) {
     url = `http://${url}`;
   }
   return new Promise((resolve) => {
     const ping = new XMLHttpRequest();
     ping.timeout = 5000;
     ping.onreadystatechange = function(){
-      if(ping.readyState == 4){
-          if(ping.status == 200){
+      if(ping.readyState === 4){
+          if(ping.status === 200){
             resolve({success: true});
           } else {
             resolve({success: false});
