@@ -16,7 +16,13 @@
 
       <div class="environments"></div>
 
-      <form class="form" autocomplete="off">
+      <ul class="options">
+        <li class="options__item"><button class="btn options__btn js-add-btn"><i class="fa fa-plus" aria-hidden="true"></i> add environment</button></li>
+        <li class="options__item"><button class="btn options__btn"><i class="fa fa-object-group" aria-hidden="true"></i> create group</button></li>
+        <li class="options__item"><button class="btn options__btn js-import-btn"><i class="fa fa-cog" aria-hidden="true"></i> import/export</button></li>
+      </ul>
+
+      <form class="form" autocomplete="off" style="display:none">
         <p class="form__title"><b>Add new environment</b></p>
         <div class="form__group">
           <div class="form__group-nested form__group-nested--first">
@@ -49,6 +55,13 @@
           <label for="colour--yellow"><span class="yellow js-color-touch"></span></label>
         </div>
       </form>
+
+      <div class="import-page js-import-page" style="display:none">
+        <p class="form__title">Import/Export</p>
+        <p class="export js-export"><a download="" href="" class="btn export-link"><i class="fa fa-download" aria-hidden="true"></i> export data</a></p>
+        <input type="file" id="selectFiles" value="Import" /><br />
+        <button id="import" class="btn"><i class="fa fa-upload" aria-hidden="true"></i> import</button>
+      </div>
 
     </div>
 

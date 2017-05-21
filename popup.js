@@ -196,6 +196,48 @@ URLSwitcher.attachEvents = () => {
       e.preventDefault();
     });
   });
+
+  const addEnvBtn = document.querySelector('.js-add-btn');
+  addEnvBtn.addEventListener('click', (e) => {
+    const importPage = document.querySelector('.js-import-page');
+    importPage.style.display = 'none';
+    const addPage = document.querySelector('.form');
+    addPage.style.display = 'flex';
+  },false);
+
+  const importBtn = document.querySelector('.js-import-btn');
+  importBtn.addEventListener('click', (e) => {
+    chrome.storage.sync.get('data', data => {
+      const envData = data;
+      const json = JSON.stringify(envData);
+      const blob = new Blob([json], {type: "application/json"});
+      const url  = URL.createObjectURL(blob);
+      let downloadLink = document.querySelector('.export-link');
+      downloadLink.download = `switcher-data-${URLSwitcher.randomString(5)}.json`;
+      downloadLink.href = url;
+      const addPage = document.querySelector('.form');
+      addPage.style.display = 'none';
+      const importPage = document.querySelector('.js-import-page');
+      importPage.style.display = 'block';
+    });
+  }, false);
+
+  document.getElementById('import').onclick = function() {
+    const files = document.getElementById('selectFiles').files;
+    if (files.length <= 0) {
+      return false;
+    }
+    let fr = new FileReader();
+    fr.onload = function(e) {
+      const result = JSON.parse(e.target.result);
+      chrome.storage.sync.set({ data: result.data});
+      URLSwitcher.buildUI(result.data);
+      const importPage = document.querySelector('.js-import-page');
+      importPage.style.display = 'none';
+    }
+    fr.readAsText(files.item(0));
+  };
+
 };
 
 URLSwitcher.buildUI = collection => {
@@ -307,6 +349,13 @@ URLSwitcher.generateUUID = () => {
     return uuid;
 };
 
+URLSwitcher.randomString = (length) => {
+  const chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  let result = '';
+  for (let i = length; i > 0; --i) result += chars[Math.floor(Math.random() * chars.length)];
+  return result;
+};
+
 URLSwitcher.deleteItem = (uuid) => {
     chrome.storage.sync.get('data', data => {
       let filteredData = data.data.filter(item => {
@@ -365,6 +414,8 @@ document.addEventListener('DOMContentLoaded', () => {
         label.value = '';
         colors[0].checked = true;
         URLSwitcher.activeLabelColor = URLSwitcher.DEFAULT_LABEL_COLOR;
+        const addPage = document.querySelector('.form');
+        addPage.style.display = 'none';
       });
     }
     e.preventDefault();
