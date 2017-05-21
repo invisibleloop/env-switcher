@@ -96,6 +96,29 @@ URLSwitcher.bindLabelColorEvents = () => {
   }));
 };
 
+URLSwitcher.checkServerStatus = (item) => {
+  const env = item;
+  let url = env.url;
+  if (!url.match(/^[a-zA-Z]+:\/\//)) {
+    url = `http://${url}`;
+  }
+  return new Promise((resolve) => {
+    const ping = new XMLHttpRequest();
+    ping.timeout = 5000;
+    ping.onreadystatechange = function(){
+      if(ping.readyState === 4){
+          if(ping.status === 200){
+            resolve({success: true});
+          } else {
+            resolve({success: false});
+          }
+      }
+    }
+    ping.open("GET", url, true);
+    ping.send();
+  });
+};
+
 URLSwitcher.updateSwitcherItem = (id, itemElement) => {
   chrome.storage.sync.get('data', data => {
     data.data.forEach(item => {;
@@ -185,6 +208,7 @@ URLSwitcher.buildUI = collection => {
       let tabs = [];
       let activeCount = 0;
       let tabClass = '';
+      let serverStatus = 'fa-spinner fa-spin';
 
       URLSwitcher.tabs.forEach((tab, tabIndex) => {
         let tabUrl = tab.url + '';
@@ -218,12 +242,13 @@ URLSwitcher.buildUI = collection => {
       list.push(
         `<div class="switcher__item switcher__item--label">
             ${ colorsMarkup }
-            <span class="switcher__tab js-switcher-tab" style="background-color: ${ item.labelColor };" data-id="${ item.id }">
+            <span class="switcher__tab js-switcher-tab" style="background-color: ${ item.labelColor };" id="${ item.id }">
             </span>
-            <span class="switcher__label js-switcher-label" contenteditable>${ item.label }</span><br />
+            <span class="switcher__label js-switcher-label" contenteditable>${ item.label }</span> <br />
             <span class="switcher__url js-switcher-url" contenteditable>${ item.url }</span>
         </div>`
       );
+      list.push(`<div class="switcher__item switcher__item--btn"><span class="switcher__status"><i class="js-server fa ${serverStatus}" aria-hidden="true" id="server-${ item.id }"></i></span></div>`);
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="active">active tab</a></div>`);
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="new">new tab</a></div>`);
       list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn btn--delete js-delete" href="#" data-id="${ item.id }" data-tab="new">&times;</a></div>`);
@@ -237,6 +262,17 @@ URLSwitcher.buildUI = collection => {
       node.addEventListener('click', () => {
         URLSwitcher.chooseColor(node);
         URLSwitcher.closeColorLists();
+      });
+    });
+
+    const serverNodes = document.querySelectorAll('.js-server');
+    collection.forEach((item) => {
+      const server = URLSwitcher.checkServerStatus(item).then((data) => {
+        const serverStatus = (data.success) ? 'fa-arrow-up' : 'fa-arrow-down' ;
+        const elemServer = document.getElementById(`server-${item.id}`);
+        elemServer.classList.remove('fa-spin');
+        elemServer.classList.remove('fa-spinner');
+        elemServer.classList.add(serverStatus);
       });
     });
 

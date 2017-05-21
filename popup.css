@@ -43,6 +43,26 @@ body {
   position: relative;
 }
 
+.switcher__status {
+  color: white;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 14px;
+  padding: 0 10px 0 0;
+}
+
+.switcher__status .fa-spinner {
+  color: #cdcdcd;
+}
+
+.switcher__status .fa-arrow-up {
+  color: #27ae60;
+}
+
+.switcher__status .fa-arrow-down {
+  color: #cdcdcd;
+}
+
 .switcher--tabs {
   margin-top:20px;
 }
@@ -52,7 +72,7 @@ body {
 }
 
 .switcher__item--label {
-  width: 63%;
+  width: 60%;
 }
 
 .switcher__label {
@@ -403,7 +423,7 @@ color picker update /
 }
 
 .color__list--show {
-  height: 22px;
+  height: 25px;
 }
 
 .color__item {
