@@ -198,15 +198,20 @@ URLSwitcher.attachEvents = () => {
   });
 
   const addEnvBtn = document.querySelector('.js-add-btn');
+  const importBtn = document.querySelector('.js-import-btn');
+
   addEnvBtn.addEventListener('click', (e) => {
+    e.target.classList.add('options__btn--active');
+    importBtn.classList.remove('options__btn--active');
     const importPage = document.querySelector('.js-import-page');
     importPage.style.display = 'none';
     const addPage = document.querySelector('.form');
     addPage.style.display = 'flex';
   },false);
 
-  const importBtn = document.querySelector('.js-import-btn');
   importBtn.addEventListener('click', (e) => {
+    e.target.classList.add('options__btn--active');
+    addEnvBtn.classList.remove('options__btn--active');
     chrome.storage.sync.get('data', data => {
       const envData = data;
       const json = JSON.stringify(envData);

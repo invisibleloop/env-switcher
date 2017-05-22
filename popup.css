@@ -160,11 +160,9 @@ body {
 }
 
 .btn {
-  /*background: #0dbed0;*/
   border-radius: 3px;
   padding: 15px 10px;
   text-decoration: none;
-  /*color: white;*/
   color: #0dbed0;
   outline: none;
   width: 100%;
@@ -229,7 +227,7 @@ body {
   flex-grow: 1;
   border-radius:3px;
   border:1px solid #cdcdcd;
-  padding:5px;
+  padding:10px;
   font-size: 12px;
 }
 
@@ -445,6 +443,11 @@ color picker update /
 / color picked update
  */
 
+.options-section {
+  border-top: 1px solid #cdcdcd;
+  margin-top:10px;
+}
+
 .options {
   display:flex;
   list-style: none;
@@ -452,6 +455,8 @@ color picker update /
   padding: 0;
   justify-content: space-between;
 }
+
+
 .options__item {
   width:calc(33.333333% - 5px);
 }
@@ -461,15 +466,43 @@ color picker update /
   padding: 10px 10px;
 }
 
+.options__btn--active {
+  background: #0dbed0;
+  color: white;
+}
+
 .import-page {
   padding: 8px 0;
+}
+.export {
+  margin-top: 0;
 }
 
 .export-link {
   background: white;
   border-color: #27ae60;
+  width: calc(33.333333% - 5px);
+  padding:10px;
 }
 
 .export-link:hover {
   background: #27ae60;
+}
+
+.import-btn {
+  background: white;
+  border-color: #27ae60;
+  width: calc(33.333333% - 5px);
+  padding:10px;
+  float: right;
+}
+
+.import-btn:hover {
+  background: #27ae60;
+}
+
+.import-file {
+  text-indent: -9999px;
+  width: calc(66.666666% - 5px);
+  padding: 7px 0;
 }
