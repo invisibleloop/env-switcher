@@ -14,15 +14,15 @@
 
       <span class="open-label" style="display:none"><span>open in</span></span>
       <input type="text" value="" style="position:absolute;left:-999999999px;width:0;height:0;top:-999999999px;"/>
-      <div class="environments"></div>
-
+      <div class="js-environments"></div>
+<div id="test"></div>
       <ul class="options">
-        <li class="options__item"><button class="btn options__btn js-add-btn"><i class="fa fa-plus" aria-hidden="true"></i> add environment</button></li>
-        <li class="options__item"><button class="btn options__btn"><i class="fa fa-object-group" aria-hidden="true"></i> manage groups</button></li>
-        <li class="options__item"><button class="btn options__btn js-import-btn"><i class="fa fa-cog" aria-hidden="true"></i> import/export</button></li>
+        <li class="options__item"><button class="btn js-options" data-options="add"><i class="fa fa-plus" aria-hidden="true"></i> add environment</button></li>
+        <li class="options__item"><button class="btn js-options" data-options="groups"><i class="fa fa-object-group" aria-hidden="true"></i> manage groups</button></li>
+        <li class="options__item"><button class="btn js-options" data-options="import"><i class="fa fa-cog" aria-hidden="true"></i> import/export</button></li>
       </ul>
 
-      <form class="form options-section" autocomplete="off" style="display:none">
+      <form class="form options-section"  data-section="add" autocomplete="off">
         <p class="form__title"><b>Add new environment</b></p>
         <div class="form__group">
           <div class="form__group-nested form__group-nested--first">
@@ -56,12 +56,23 @@
         </div>
       </form>
 
-      <div class="options-section import-page js-import-page" style="display:none">
-        <p class="form__title">Export</p>
-        <p class="export js-export"><a download="" href="" class="btn export-link"><i class="fa fa-download" aria-hidden="true"></i> export data</a></p>
-        <p class="form__title">Import</p>
-        <input type="file" id="selectFiles" value="Import" class="btn import-file" />
-        <button id="import" class="btn import-btn"><i class="fa fa-upload" aria-hidden="true"></i> import data</button>
+      <div class="options-section" data-section="groups">
+        <div class="options-column options-column">
+          <p class="form__title">Groups</p>
+          <!-- TODO:  -->Create/edit/delete groups
+        </div>
+      </div>
+
+      <div class="options-section"  data-section="import">
+        <div class="options-column options-column--one-third">
+          <p class="form__title">Export</p>
+          <p class="export js-export"><a download="" href="" class="btn btn--form js-export-link"><i class="fa fa-download" aria-hidden="true"></i> export data</a></p>
+        </div>
+        <div class="options-column options-column--two-thirds">
+          <p class="form__title">Import</p>
+          <input type="file" id="selectFiles" value="Import" class="btn btn--file" />
+          <button class="btn btn--form btn--one-third js-import"><i class="fa fa-upload" aria-hidden="true"></i> import data</button>
+        </div>
       </div>
 
     </div>

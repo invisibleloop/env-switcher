@@ -197,58 +197,56 @@ URLSwitcher.attachEvents = () => {
     });
   });
 
-  const addEnvBtn = document.querySelector('.js-add-btn');
-  const importBtn = document.querySelector('.js-import-btn');
+  const optionTabs = document.querySelectorAll('.js-options');
+  const optionsSections = document.querySelectorAll('.options-section');
+  optionTabs.forEach(optionBtn => {
+    optionBtn.addEventListener('click', (e) => {
+      let target = e.currentTarget;
+      let option = target.dataset.options;
+      optionsSections.forEach(s => {
+        s.classList.remove('open');
+      });
+      optionTabs.forEach(o => {
+        o.classList.remove('btn--active');
+      });
+      if (option === 'import') {
+        chrome.storage.sync.get('data', data => {
+          const envData = data;
+          const json = JSON.stringify(envData);
+          const blob = new Blob([json], {type: "application/json"});
+          const url  = URL.createObjectURL(blob);
+          let downloadLink = document.querySelector('.js-export-link');
+          downloadLink.download = `switcher-data-${URLSwitcher.randomString(5)}.json`;
+          downloadLink.href = url;
+        });
+      }
+      target.classList.add('btn--active');
+      document.querySelector(`[data-section="${option}"]`).classList.add('open');
+    }, false);
+  });
 
-  addEnvBtn.addEventListener('click', (e) => {
-    e.target.classList.add('options__btn--active');
-    importBtn.classList.remove('options__btn--active');
-    const importPage = document.querySelector('.js-import-page');
-    importPage.style.display = 'none';
-    const addPage = document.querySelector('.form');
-    addPage.style.display = 'flex';
-  },false);
+  const importBtn = document.querySelector('.js-import');
 
-  importBtn.addEventListener('click', (e) => {
-    e.target.classList.add('options__btn--active');
-    addEnvBtn.classList.remove('options__btn--active');
-    chrome.storage.sync.get('data', data => {
-      const envData = data;
-      const json = JSON.stringify(envData);
-      const blob = new Blob([json], {type: "application/json"});
-      const url  = URL.createObjectURL(blob);
-      let downloadLink = document.querySelector('.export-link');
-      downloadLink.download = `switcher-data-${URLSwitcher.randomString(5)}.json`;
-      downloadLink.href = url;
-      const addPage = document.querySelector('.form');
-      addPage.style.display = 'none';
-      const importPage = document.querySelector('.js-import-page');
-      importPage.style.display = 'block';
-    });
-  }, false);
-
-  document.getElementById('import').onclick = function() {
+  importBtn.addEventListener('click', () => {
     const files = document.getElementById('selectFiles').files;
     if (files.length <= 0) {
       return false;
     }
     let fr = new FileReader();
     fr.onload = function(e) {
-      const result = JSON.parse(e.target.result);
+      const result = JSON.parse(e.currentTarget.result);
       chrome.storage.sync.set({ data: result.data});
       URLSwitcher.buildUI(result.data);
-      const importPage = document.querySelector('.js-import-page');
-      importPage.style.display = 'none';
     }
     fr.readAsText(files.item(0));
-  };
+  }, false);
 
 };
 
 URLSwitcher.buildUI = collection => {
 
   if (typeof collection !== 'undefined') {
-    let elem = document.querySelector('.environments');
+    let elem = document.querySelector('.js-environments');
     let list = [];
 
     collection.forEach((item) => {
@@ -296,9 +294,9 @@ URLSwitcher.buildUI = collection => {
         </div>`
       );
       list.push(`<div class="switcher__item switcher__item--btn"><span class="switcher__status"><i class="js-server fa ${serverStatus}" aria-hidden="true" id="server-${ item.id }"></i></span></div>`);
-      list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="active">active tab</a></div>`);
-      list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn js-link" href="#" data-url="${ item.url }" data-tab="new">new tab</a></div>`);
-      list.push(`<div class="switcher__item switcher__item--btn"><a class="switcher__link btn btn--delete js-delete" href="#" data-id="${ item.id }" data-tab="new">&times;</a></div>`);
+      list.push(`<div class="switcher__item switcher__item--btn"><button class="switcher__link btn js-link" data-url="${ item.url }" data-tab="active">active tab</button></div>`);
+      list.push(`<div class="switcher__item switcher__item--btn"><button class="switcher__link btn js-link" data-url="${ item.url }" data-tab="new">new tab</button></div>`);
+      list.push(`<div class="switcher__item switcher__item--btn"><button class="switcher__link btn btn--delete js-delete" data-id="${ item.id }" data-tab="new">&times;</button></div>`);
       list.push('</div>');
 
     });
@@ -419,8 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
         label.value = '';
         colors[0].checked = true;
         URLSwitcher.activeLabelColor = URLSwitcher.DEFAULT_LABEL_COLOR;
-        const addPage = document.querySelector('.form');
-        addPage.style.display = 'none';
       });
     }
     e.preventDefault();
