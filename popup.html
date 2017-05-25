@@ -13,10 +13,16 @@
       <span class="logo">Environment Switcher</span>
 
       <span class="open-label" style="display:none"><span>open in</span></span>
-
+      <input type="text" value="" style="position:absolute;left:-999999999px;width:0;height:0;top:-999999999px;"/>
       <div class="environments"></div>
 
-      <form class="form" autocomplete="off">
+      <ul class="options">
+        <li class="options__item"><button class="btn options__btn js-add-btn"><i class="fa fa-plus" aria-hidden="true"></i> add environment</button></li>
+        <li class="options__item"><button class="btn options__btn"><i class="fa fa-object-group" aria-hidden="true"></i> manage groups</button></li>
+        <li class="options__item"><button class="btn options__btn js-import-btn"><i class="fa fa-cog" aria-hidden="true"></i> import/export</button></li>
+      </ul>
+
+      <form class="form options-section" autocomplete="off" style="display:none">
         <p class="form__title"><b>Add new environment</b></p>
         <div class="form__group">
           <div class="form__group-nested form__group-nested--first">
@@ -49,6 +55,14 @@
           <label for="colour--yellow"><span class="yellow js-color-touch"></span></label>
         </div>
       </form>
+
+      <div class="options-section import-page js-import-page" style="display:none">
+        <p class="form__title">Export</p>
+        <p class="export js-export"><a download="" href="" class="btn export-link"><i class="fa fa-download" aria-hidden="true"></i> export data</a></p>
+        <p class="form__title">Import</p>
+        <input type="file" id="selectFiles" value="Import" class="btn import-file" />
+        <button id="import" class="btn import-btn"><i class="fa fa-upload" aria-hidden="true"></i> import data</button>
+      </div>
 
     </div>
 
