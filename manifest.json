@@ -15,6 +15,7 @@
     "activeTab",
     "https://ajax.googleapis.com/",
     "storage",
-    "<all_urls>"
+    "http://*/*",
+    "https://*/*"
   ]
 }

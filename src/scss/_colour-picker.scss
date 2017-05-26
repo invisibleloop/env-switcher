@@ -1,0 +1,32 @@
+.color {
+  &__list {
+    background: rgba($white, .7);
+    display: block;
+    height: 0;
+    left: -5px;
+    overflow: hidden;
+    position: relative;
+    transition: all .2s;
+    width: 100%;
+    z-index: 9;
+
+    &--show {
+      height: 25px;
+    }
+  }
+
+  &__item {
+    border-radius: 50%;
+    display: inline-block;
+    height: 14px;
+    margin: 5px;
+    position: relative;
+    transition: all .2s;
+    width: 14px;
+
+    &:hover {
+      cursor: pointer;
+      transform: scale(1.6);
+    }
+  }
+}

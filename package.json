@@ -1,0 +1,27 @@
+{
+  "name": "env-switch",
+  "version": "1.0.0",
+  "description": "A useful tool for switching between environments whilst keeping the url structure intact.",
+  "main": "popup.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/invisibleloop/env-switcher.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/invisibleloop/env-switcher/issues"
+  },
+  "homepage": "https://github.com/invisibleloop/env-switcher#readme",
+  "devDependencies": {
+    "css-loader": "^0.28.3",
+    "extract-text-webpack-plugin": "^2.1.0",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.1",
+    "webpack": "^2.6.1"
+  }
+}

@@ -1,0 +1,62 @@
+@import 'colors';
+@import 'fonts';
+@import 'buttons';
+@import 'layout';
+@import 'logo';
+@import 'switcher';
+@import 'forms';
+@import 'tabs';
+@import 'colour-picker';
+@import 'options';
+
+
+.open-label {
+  font-size: 80%;
+  font-weight: 400;
+  position: absolute;
+  right: 109px;
+  text-align: right;
+  top: 8px;
+
+  &::before {
+    border-top: 1px solid $mid-grey;
+    content: '';
+    left: -23px;
+    position: absolute;
+    top: 8px;
+    width: 20px;
+  }
+
+  &::after {
+    border-top: 1px solid $mid-grey;
+    content: '';
+    position: absolute;
+    right: -23px;
+    top: 8px;
+    width: 20px;
+  }
+
+  span {
+    &::before {
+      border-left: 1px solid $mid-grey;
+      content: '';
+      height: 7px;
+      left: -23px;
+      position: absolute;
+      top: 8px;
+    }
+
+    &::after {
+      border-left: 1px solid $mid-grey;
+      content: '';
+      height: 7px;
+      position: absolute;
+      right: -23px;
+      top: 8px;
+    }
+  }
+}
+
+.export {
+  margin-top: 0;
+}

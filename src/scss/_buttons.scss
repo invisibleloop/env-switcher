@@ -1,0 +1,62 @@
+/* buttons */
+.btn {
+  background: white;
+  border-radius: 3px;
+  padding: 10px 10px;
+  text-decoration: none;
+  color: #0dbed0;
+  cursor: pointer;
+  outline: none;
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  box-sizing: border-box;
+  font-size: 12px;
+  line-height: 12px;
+  border:1px solid #0dbed0;
+}
+
+.btn:hover {
+  background: #0dbed0;
+  color:white;
+  transition:background 0.2s linear, color 0.2s linear;
+}
+
+.btn--delete {
+  color: #c0392b;
+  border:1px solid #c0392b;
+}
+.btn--delete:hover {
+  background: #c0392b;
+  color: white;
+}
+
+.btn--form {
+  background:white;
+  border: 1px solid #27ae60;
+}
+
+.btn--form:hover {
+  background: #27ae60;
+}
+
+.btn-tabs {
+  padding: 10px 10px;
+}
+
+.btn--active {
+  background: #0dbed0;
+  color: white;
+}
+
+.btn--file {
+  border-style: dashed;
+  text-indent: -9999px;
+  width: calc(66.666666% - 5px);
+  padding: 7px 0;
+  background: transparent;
+}
+
+.btn--one-third {
+  width: calc(33.333333% - 5px);
+}
