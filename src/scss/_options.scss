@@ -1,0 +1,35 @@
+.options-section {
+  border-top: 1px solid $mid-grey;
+  display: none;
+  margin-top: 10px;
+  padding: 8px 0;
+
+  &.open {
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+.options-column {
+  width: 100%;
+
+  &--one-third {
+    width: calc(33.333333% - 5px);
+  }
+
+  &--two-thirds {
+    width: calc(66.666666% - 5px);
+  }
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+
+  &__item {
+    width: calc(33.333333% - 5px);
+  }
+}

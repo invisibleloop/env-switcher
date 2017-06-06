@@ -259,14 +259,14 @@ URLSwitcher.buildUI = collection => {
         let tabUrl = tab.url + '';
         tabUrl = tabUrl.replace(/(^\w+:|^)\/\//, '');
         let url = item.url;
-        let active = (tabUrl.startsWith(url)) ? ' tabs_item--active' : '';
+        let active = (tabUrl.startsWith(url)) ? ' tabs__item--active' : '';
         let indexTab = `data-index="${ tabIndex }"`;
         let tabText = (tabUrl.startsWith(url)) ? '&bull;' : '&nbsp;';
         if (tabUrl.startsWith(url)) {
           activeCount++;
           tabClass = ' switcher--tabs';
         }
-        tabs.push(`<span class="tabs_item${ active }" ${ indexTab }>${ tabText }</span>`);
+        tabs.push(`<span class="tabs__item${ active }" ${ indexTab }>${ tabText }</span>`);
       });
 
       let tabGroup = tabs.join('');
