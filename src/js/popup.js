@@ -171,7 +171,7 @@ URLSwitcher.attachEvents = () => {
       e.preventDefault();
     });
 
-    let tabs = document.querySelectorAll('.tabs_item--active');
+    let tabs = document.querySelectorAll('.tabs__item--active');
     tabs.forEach(tab => {
       let tabIndex = parseInt(tab.dataset.index);
       tab.addEventListener('click', e => {
